@@ -6,7 +6,8 @@ if (!defined('STATUSNET')) {
 class NoticesBottomAdPlugin extends Plugin
 {
     function onStartShowContentBlock($action){
-        if($action->trimmed('action')!="public")return true;
+        $actionNames = array("public","showstream");
+        if(!in_array($action->trimmed('action'),$actionNames))return true;
         
         $action->elementStart('div', array('id' => 'content'));
         if (Event::handle('StartShowPageTitle', array($action))) {
@@ -23,6 +24,19 @@ class NoticesBottomAdPlugin extends Plugin
     }
     
     function showContent($action){
+        switch($action->trimmed('action'))
+        {
+            case 'public':
+                $this->publicContent($action);
+                break;
+            case 'showstream':
+                $this->showstreamContent($action);
+                break;
+        }
+    }
+    
+    function publicContent($action)
+    {
         $nl = new NoticeList($action->notice, $action);
 
         $cnt = $nl->show();
@@ -35,8 +49,37 @@ class NoticesBottomAdPlugin extends Plugin
                           $action->page, 'public');
     }
     
+    function showstreamContent($action)
+    {
+        $action->showProfile();
+        $this->showstreamNotices($action);
+    }
+    
+    function showstreamNotices($action)
+    {
+        $notice = empty($action->tag)
+          ? $action->user->getNotices(($action->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1)
+            : $action->user->getTaggedNotices($action->tag, ($action->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1, 0, 0, null);
+
+        $pnl = new ProfileNoticeList($notice, $action);
+        $cnt = $pnl->show();
+        if (0 == $cnt) {
+            $action->showEmptyListMessage();
+        }
+
+        $args = array('nickname' => $action->user->nickname);
+        if (!empty($action->tag))
+        {
+            $args['tag'] = $action->tag;
+        }
+        $this->showAd($action);
+        $action->pagination($action->page>1, $cnt>NOTICES_PER_PAGE, $action->page,
+                          'showstream', $args);
+        
+    }
+    
     function showAd($action){
-        $action->raw('<img border="0" src="http://eiv.baidu.com/uapimg/vancl/220x60.gif">');
+        $action->raw('<div style="float:left;"><img border="0" src="http://eiv.baidu.com/uapimg/vancl/220x60.gif"></div>');
         //$action->inlineScript("var cpro_id = 'u172659';");
         //$action->script("http://cpro.baidu.com/cpro/ui/c.js");
     }
