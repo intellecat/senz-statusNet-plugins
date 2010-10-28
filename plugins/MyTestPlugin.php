@@ -17,10 +17,10 @@ if (!defined('STATUSNET')) {
 class MyTestPlugin extends Plugin
 {
 	function onStartShowFooter($action)
-    {
+	{
 		//common_log(7,'footer deleted');
         //return false;
-    }
+        }
 
 	function onStartShowLocalNavBlock($action)
 	{
