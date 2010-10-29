@@ -72,14 +72,16 @@ class NoticesBottomAdPlugin extends Plugin
         {
             $args['tag'] = $action->tag;
         }
+        $action->elementStart('div',array('style'=>'float:left;'));
         $this->showAd($action);
+        $action->elementEnd('div');
         $action->pagination($action->page>1, $cnt>NOTICES_PER_PAGE, $action->page,
                           'showstream', $args);
         
     }
     
     function showAd($action){
-        $action->raw('<div style="float:left;"><img border="0" src="http://eiv.baidu.com/uapimg/vancl/220x60.gif"></div>');
+        $action->raw('<img border="0" src="http://eiv.baidu.com/uapimg/vancl/220x60.gif">');
         //$action->inlineScript("var cpro_id = 'u172659';");
         //$action->script("http://cpro.baidu.com/cpro/ui/c.js");
     }
