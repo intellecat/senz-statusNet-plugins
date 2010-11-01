@@ -2289,8 +2289,42 @@ border-color:transparent;*/
 	border-bottom:1px solid #C0DEED;
 }
 
+#site_nav_local_views li:first-child.current {
+    border-top:1px solid #FFF;
+}
+
 #notice_data-text {
 	border-color:#C0DEED;
+}
+
+body {
+    background:#C0DEED  url(../images/illustrations/clouds.png) 0 0 no-repeat;
+    background-attachment: fixed;
+    color:#333333;
+}
+
+#aside_primary {
+    background-color:#DDEEF6;
+}
+
+#wrap {
+    width:800px;
+}
+
+#content {
+    width:535px;
+}
+
+#site_nav_local_views {
+    width:223px;
+}
+
+#aside_primary {
+    width:202px;
+}
+
+#brief_stats_container {
+    width:202px;
 }
 /*end*/
 
@@ -2305,6 +2339,14 @@ color:#333;
 
 .form_notice {
 	top:150px;
+}
+
+.success {
+    background-color:#C0DEED;
+}
+
+#public #core, #showstream #core, #showgroup #core {
+    margin-top:0;
 }
 
 /*end of @media screen, projection, tv*/
