@@ -28,17 +28,39 @@ class CommonStylePlugin extends Plugin
 		$briefStats->show();
 	}
 	
-	function onAutoload($cls)
-    {
-        $dir = dirname(__FILE__);
+	function onEndShowDesign($action)
+	{
+	    $user = common_current_user();
 
-        switch ($cls)
-        {
-        	case 'BriefStats':
-            	include_once $dir . '/'.$cls.'.php';
-            return false;
-        	default:
-            	return true;
-        }
-    }
+	    if (empty($user) || $user->viewdesigns) {
+		$design = $action->getDesign();
+
+		if (!empty($design)) {
+		    $css = '';
+		    //$design->showCSS($this);
+		    //$css .= '#aside_primary { background-color: #'. $sbcolor->hexValue() . ' }' . "\n";
+		    $sbcolor = Design::toWebColor($design->sidebarcolor);
+		    if (!empty($sbcolor)) {
+			$css = '#site_nav_local_views,#brief_stats_container { background-color: #'. $sbcolor->hexValue() . ' }' . "\n";
+		    }
+		    if (0 != mb_strlen($css)) {
+			$action->style($css);
+		    }
+		}
+	    }
+	}
+	
+	function onAutoload($cls)
+	{
+	    $dir = dirname(__FILE__);
+    
+	    switch ($cls)
+	    {
+		    case 'BriefStats':
+		    include_once $dir . '/'.$cls.'.php';
+		return false;
+		    default:
+		    return true;
+	    }
+	}
 }

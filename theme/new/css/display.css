@@ -2108,6 +2108,8 @@ border-color:#C0DEED;
 .aside .section h2 {
 background-color:transparent;
 border-color:transparent;
+}
+.aside .section h2 {
 color:#4C4C4C;
 }
 #site_nav_local_views .current {
@@ -2259,14 +2261,15 @@ body {
 	font-size:1em;*/
 	font-weight:normal;
 	padding:7px;
+        text-shadow:none;
 /*	text-decoration:none;
 	text-shadow:2px 2px 2px #DDDDDD;*/
 }
 
 #site_nav_local_views a, .aside .section h2 {
 /*background-color:transparent;
-border-color:transparent;*/
-	color:#0084B4;
+border-color:transparent;
+	color:#0084B4;*/
 }
 
 #site_nav_local_views .nav li.current a,#site_nav_local_views .nav li.current a:hover {
@@ -2276,7 +2279,11 @@ border-color:transparent;*/
 }
 
 #site_nav_local_views .nav li a:hover {
-	background-color:#EDFEFF;
+	/* background-color:#EDFEFF; */
+}
+
+#site_nav_local_views a:hover {
+background-color:rgba(255, 255, 255, 0.1);
 }
 
 #site_nav_local_views li {
