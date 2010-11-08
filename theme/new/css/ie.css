@@ -12,18 +12,18 @@ color:#fff;
 }
 
 #site_nav_local_views a {
-background-color:#ddffcc;
+background-color:#DDEEF6;
 }
 
 #form_notice {
-width:525px;
+width:515px;
 }
 #form_notice .form_note {
 top:-5px;
 right:0;
 }
 #form_notice textarea {
-width:97.75%;
+width:80%;
 }
 #form_notice .form_note + label {
 position:absolute;
@@ -44,12 +44,12 @@ right:0;
 }
 
 #aside_primary {
-width:181px;
+width:202px;
 }
 
 #form_notice,
 #anon_notice {
-top:190px;
+top:150px;
 }
 
 #public #content,
@@ -65,7 +65,7 @@ top:190px;
 #outbox #content,
 #subscriptions #content,
 #subscribers #content {
-padding-top:138px;
+padding-top:20px;
 }
 
 .notice {
