@@ -293,7 +293,6 @@ margin-bottom:18px;
 #anon_notice {
 clear:both;
 width:99.8%;
-padding-top:36px;
 line-height:1.5;
 font-size:1.3em;
 font-weight:bold;
@@ -2069,7 +2068,7 @@ background-position:10% 47%;
 /*--------------------------------------*/
 
 #anon_notice {
-background:url(../images/illustrations/illu_unicorn-01.png) no-repeat 0 0;
+/* background:url(../images/illustrations/illu_unicorn-01.png) no-repeat 0 0; */
 }
 #showstream #anon_notice,
 #content .notice p.entry-content a:visited,
@@ -2353,7 +2352,7 @@ color:#333;
 }
 
 #public #core, #showstream #core, #showgroup #core {
-    margin-top:0;
+    margin-top:9em;
 }
 
 /*end of @media screen, projection, tv*/
