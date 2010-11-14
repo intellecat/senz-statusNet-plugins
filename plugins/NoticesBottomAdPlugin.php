@@ -3,23 +3,11 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+//require StartShowContent Event
 class NoticesBottomAdPlugin extends Plugin
-{
-    function onStartShowContentBlock($action){
-        $actionNames = array("public","showstream");
-        if(!in_array($action->trimmed('action'),$actionNames))return true;
-        
-        $action->elementStart('div', array('id' => 'content'));
-        if (Event::handle('StartShowPageTitle', array($action))) {
-            $action->showPageTitle();
-            Event::handle('EndShowPageTitle', array($action));
-        }
-        $action->showPageNoticeBlock();
-        $action->elementStart('div', array('id' => 'content_inner'));
-        // show the actual content (forms, lists, whatever)
+{   
+    function onStartShowContent($action){
         $this->showContent($action);
-        $action->elementEnd('div');
-        $action->elementEnd('div');
         return false;
     }
     
