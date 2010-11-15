@@ -51,7 +51,7 @@ class CommonStylePlugin extends Plugin
 	}
 	
 	function onStartShowInnerContent($action){
-	    if(!$action->trimmed('action')=='userdesignsettings') return true;
+	    if($action->trimmed('action')!='userdesignsettings') return true;
 	    $design = $action->getWorkingDesign();
 	
 	    if (empty($design)) {
