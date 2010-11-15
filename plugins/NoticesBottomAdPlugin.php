@@ -6,7 +6,9 @@ if (!defined('STATUSNET')) {
 //require StartShowContent Event
 class NoticesBottomAdPlugin extends Plugin
 {   
-    function onStartShowContent($action){
+    function onStartShowInnerContent($action){
+        if( in_array($action->trimmed('action'),array('public','showstream')))
+            return true;
         $this->showContent($action);
         return false;
     }

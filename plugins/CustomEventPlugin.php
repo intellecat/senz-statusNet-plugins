@@ -6,9 +6,6 @@ if (!defined('STATUSNET')) {
 class CustomEventPlugin extends Plugin
 {
     function onStartShowContentBlock($action){
-        $actionNames = array("public","showstream");
-        if(!in_array($action->trimmed('action'),$actionNames))return true;
-        
         $action->elementStart('div', array('id' => 'content'));
         if (Event::handle('StartShowPageTitle', array($action))) {
             $action->showPageTitle();
@@ -17,15 +14,15 @@ class CustomEventPlugin extends Plugin
         $action->showPageNoticeBlock();
         $action->elementStart('div', array('id' => 'content_inner'));
         // show the actual content (forms, lists, whatever)
-        if (Event::handle('StartShowContent', array($action))) {
+        if (Event::handle('StartShowInnerContent', array($action))) {
             $action->showContent();
-            Event::handle('EndShowContent', array($action));
+            Event::handle('EndShowInnerContent', array($action));
         }
         $action->elementEnd('div');
         $action->elementEnd('div');
         return false;
     }
     
-//    function onStartShowContent($action){
+//    function onStartShowInnerContent($action){
 //    }
 }

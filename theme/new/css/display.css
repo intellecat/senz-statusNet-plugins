@@ -1466,19 +1466,19 @@ max-height:480px;
 float:left;
 }
 #settings_design_color .form_data {
-width:400px;
+width:500px;
 margin-right:1%;
 }
 
 #settings_design_color .form_data li {
-width:33%;
+width:20%;
 }
 #settings_design_color .form_data label {
 float:none;
 display:block;
 }
 #settings_design_color .form_data .swatch {
-padding:11px;
+padding:10px;
 margin-left:0;
 width:auto;
 }
@@ -2250,7 +2250,24 @@ color:#333;
     background-color:#C0DEED;
 }
 
+#themes {
+    width:516px;
+    border-top:0 none;
+    clear:both;
+    padding-top:6px !important;
+    display:block;
+    margin:0 0 16px;
+}
 
+#themes a {
+    background-color:#F3F3F3;
+    border:2px solid #EEEEEE;
+    color:#666666;
+    display:block;
+    float:left;
+    font-size:11px;
+    margin:0 11px 11px 0;
+}
 
 /*end of @media screen, projection, tv*/
 

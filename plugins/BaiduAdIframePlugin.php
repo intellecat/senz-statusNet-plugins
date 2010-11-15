@@ -5,7 +5,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class BaiduAdIframePlugin extends UAPPlugin
 {
-	public $adScript = 'http://cpro.baidu.com/cpro/ui/c.js';
+    public $adScript = 'http://cpro.baidu.com/cpro/ui/c.js';
     public $client   = null;
 
 	function __construct()
