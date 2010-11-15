@@ -1583,7 +1583,7 @@ padding-top:0;
 html,
 body,
 a:active {
-background-color:#9AE4E8;
+background-color:#C0DEED;
 }
 
 body {
@@ -2280,5 +2280,4 @@ display:inline;
 .notices li {
 margin-bottom:18px;
 }
-
 }/*end of @media print*/
