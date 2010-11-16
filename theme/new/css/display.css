@@ -2269,6 +2269,18 @@ color:#333;
     margin:0 11px 11px 0;
 }
 
+#themes a:hover img {
+    border:1px solid #666666;
+}
+
+#themes a img {
+    border:1px solid #EEEEEE;
+    clear:both;
+    display:block;
+    height:72px;
+    width:112px;
+}
+
 /*end of @media screen, projection, tv*/
 
 
