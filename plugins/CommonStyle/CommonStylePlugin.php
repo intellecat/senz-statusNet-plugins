@@ -26,6 +26,8 @@ class CommonStylePlugin extends Plugin
 		if(!property_exists($action,'user'))return true;
 		$briefStats = new BriefStats($action,$action->user);
 		$briefStats->show();
+		
+		$action->showLocalNavBlock();
 	}
 	
 	function onEndShowDesign($action)
@@ -49,7 +51,11 @@ class CommonStylePlugin extends Plugin
 		}
 	    }
 	}
-		
+	
+	function onStartShowLocalNavBlock($action){
+	    return false;
+	}
+	
 	function onAutoload($cls)
 	{
 	    $dir = dirname(__FILE__);
