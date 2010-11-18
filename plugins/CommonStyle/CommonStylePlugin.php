@@ -23,15 +23,16 @@ class CommonStylePlugin extends Plugin
 
 	public function onStartShowSections($action)
 	{
-		if(!property_exists($action,'user'))return true;
-		$briefStats = new BriefStats($action,$action->user);
-		$briefStats->show();
-		
+		if(property_exists($action,'user')){
+		    $briefStats = new BriefStats($action,$action->user);
+		    $briefStats->show();
+		}		
 		$action->showLocalNavBlock();
 	}
 	
 	function onEndShowDesign($action)
 	{
+	    return false;
 	    $user = common_current_user();
 
 	    if (empty($user) || $user->viewdesigns) {
