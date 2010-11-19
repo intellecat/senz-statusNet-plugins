@@ -1,24 +1,70 @@
 $(document).ready(function(){
     var themes = twitterThemes();
     for(var i=1;i<=16;i++){
-        console.log(i);
         themeSwitch(themes,i);
+    }
+    
+    function InitColors(i, E) {
+        switch (parseInt(E.id.slice(-1))) {
+            case 1: default:
+                $(E).val(rgb2hex($('body').css('background-color')));
+                break;
+            case 2:
+                $(E).val(rgb2hex($('#content').css('background-color')));
+                break;
+            case 3:
+                $(E).val(rgb2hex($('#aside_primary').css('background-color')));
+                break;
+            case 4:
+                $(E).val(rgb2hex($('html body').css('color')));
+                break;
+            case 5:
+                $(E).val(rgb2hex($('a').css('color')));
+                break;
+        }
+        UpdateSwatch(E);
+    }
+    
+    function UpdateSwatch(e) {
+        $(e).css({"background-color": e.value});
+    }
+    
+    function themeSwitch(themes,i){
+        $('#Theme'+i).click(function(){
+            $('body').css('background-image','url("'+themes[i].image+'")')
+                .css('background-repeat',themes[i].tiled ? 'repeat' : 'no-repeat')
+                .css('background-attachment','scroll')
+                .css('background-color',themes[i].background_color)
+                .css('color',themes[i].text_color);
+            $('#aside_primary').css('background-color',themes[i].sidebar_fill_color);
+            $('a').css('color',themes[i].link_color);
+            
+            var swatches = $('#settings_design_color .swatch');
+            swatches.each(InitColors);
+            
+            if(themes[i].tiled)
+                $('#design_background-image_repeat').attr('checked','checked');
+            else
+                $('#design_background-image_repeat').removeAttr('checked');
+            
+            return false;
+        });
+    }
+    
+    function rgb2hex(rgb) {
+        if (rgb.slice(0,1) == '#') { return rgb; }
+        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        return '#' + dec2hex(rgb[1]) + dec2hex(rgb[2]) + dec2hex(rgb[3]);
+    }
+    /* dec2hex written by R0bb13 <robertorebollo@gmail.com> */
+    function dec2hex(x) {
+        hexDigits = new Array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+        return isNaN(x) ? '00' : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
     }
     
 });
 
-function themeSwitch(themes,i){
-    $('#Theme'+i).click(function(){
-        $('body').css('background-image','url("'+themes[i].image+'")')
-            .css('background-repeat',themes[i].tiled ? 'repeat' : 'no-repeat')
-            .css('background-attachment','scroll')
-            .css('background-color',themes[i].background_color)
-            .css('color',themes[i].text_color);
-        $('#aside_primary').css('background-color',themes[i].sidebar_fill_color);
-        $('a').css('color',themes[i].link_color);
-        return false;
-    });
-}
+
 
 function twitterThemes(){
     var themes =
