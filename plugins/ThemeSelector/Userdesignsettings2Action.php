@@ -46,7 +46,7 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
     {
         $selectedThemeID = $this->args['selected_theme_id'];
         $modefied = $this->args['modefied'] == 'true';
-        
+        /*
         if($selectedThemeID!='0' && !$modefied) {
             $this->showForm(_('Design preferences saved.'), true);
             return;
@@ -55,7 +55,7 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
         if($selectedThemeID!='0' && $modefied) {
             $this->showForm(_('Design preferences saved.'), true);
             return;
-        }
+        }*/
 
         try {
             $bgcolor = new WebColor($this->trimmed('design_background'));
