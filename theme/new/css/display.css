@@ -434,6 +434,9 @@ border-radius:4px;
 border-radius-topright:0;
 -moz-border-radius-topright:0;
 -webkit-border-top-right-radius:0;
+border-radius-bottomright:0;
+-moz-border-radius-bottomright:0;
+-webkit-border-bottom-right-radius:0;
 border-style:solid;
 border-width:1px;
 }
@@ -450,10 +453,17 @@ min-height:259px;
 float:right;
 margin-left:0;
 padding:0;
-border-width:1px;
+border-width:0 0 0 1px;
 border-style:solid;
-border-right:0;
-border-top:0;
+border-radius:4px;
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+border-radius-topleft:0;
+-moz-border-radius-topleft:0;
+-webkit-border-top-left-radius:0;
+border-radius-bottomleft:0;
+-moz-border-radius-bottomleft:0;
+-webkit-border-bottom-left-radius:0;
 }
 
 .form_notice {
@@ -1558,7 +1568,8 @@ padding-top:12.5em;
 #adminprofileflag #form_notice,
 #accessadminpanel #form_notice,
 #sessionsadminpanel #form_notice,
-#sitenoticeadminpanel #form_notice{
+#sitenoticeadminpanel #form_notice,
+#userdesignsettings2 #form_notice{
 display:none;
 }
 
@@ -2123,7 +2134,6 @@ background-color:#FFFFFF;
 	padding:10px;
 	width:100%;
 	height:83px;
-	background-color:#DDEEF6;
 	border-bottom:1px solid #C0DEED;
 	float:right;
 }
@@ -2259,6 +2269,11 @@ color:#333;
 
 #themes a:hover img {
     border:1px solid #666666;
+}
+
+#themes .current {
+    border-color:#999999;
+    outline:medium none;
 }
 
 #themes a img {

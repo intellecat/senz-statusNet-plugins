@@ -4,39 +4,30 @@ if (!defined('STATUSNET')) {
 }
 
 class ThemeSelectorPlugin extends Plugin
-{
-    function onStartShowInnerContent($action){
-	    if($action->trimmed('action')!='userdesignsettings') return true;
-	    $design = $action->getWorkingDesign();
-	
-	    if (empty($design)) {
-		$design = Design::siteDesign();
-	    }
-	    $this->showThemeSelections($action);
-	    $action->showDesignForm($design);
-	    return false;
-	}
-	
-    function showThemeSelections($action)
+{    
+    function onStartAccountSettingsDesignMenuItem($nav)
     {
-        $action->elementStart('div',array('id'=>'theme_selections'));
-        $action->elementStart('h3');
-        $action->text(_('select a theme'));
-        $action->elementEnd('h3');
-        $action->elementStart('div',array('id'=>'themes'));
-        for($i=1;$i<=16;$i++)
-        {
-            $action->elementStart('a',array('title'=>"Theme {$i}",'id'=>"Theme{$i}",'href'=>'#','class'=>'theme'));
-            $action->element('img',array('src'=>"http://static.leihou.com/v319001/images/themes/swatch-{$i}.gif",'alt'=>"Theme $i"));
-            $action->elementEnd('a');
-        }
-
-        $action->elementEnd('div');
-        $action->elementEnd('div');
+	$title = _('Design your profile');
+	$nav->showMenuItem('userdesignsettings2',_('Design'),$title);
+	return false;
     }
     
-    function onEndShowScripts($action)
+    function onAutoload($cls)
     {
-        $action->script('local/plugins/ThemeSelector/ThemeSelector.js');
+	$dir = dirname(__FILE__);
+	switch ($cls)
+	{
+		case 'Userdesignsettings2Action':
+		include_once $dir . '/'.$cls.'.php';
+	    return false;
+		default:
+		return true;
+	}
+    }
+
+    function onRouterInitialized($m)
+    {//return;
+        $m->connect('settings/userdesign',
+                    array('action' => 'userdesignsettings2'));
     }
 }

@@ -57,6 +57,14 @@ class CommonStylePlugin extends Plugin
 	    return false;
 	}
 	
+	function onEndShowScripts($action){
+	    $action->inlineScript("
+		$(document).ready(function(){
+		    $('#aside_primary').height($('#core').height());   
+		});
+	    ");
+	}
+	
 	function onAutoload($cls)
 	{
 	    $dir = dirname(__FILE__);
