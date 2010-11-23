@@ -26,15 +26,25 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
     
     function showThemeSelections()
     {
+        $design = new Design;
+        $design->limit(4,16);
+        $design->find();
+        $designs = array();
+        while ($design->fetch()) {
+            $designs[] = $design->toArray();
+        }
+        
         $this->elementStart('div',array('id'=>'theme_selections'));
         $this->elementStart('h3');
         $this->text(_('select a theme'));
         $this->elementEnd('h3');
         $this->elementStart('div',array('id'=>'themes'));
-        for($i=1;$i<=16;$i++)
-        {
-            $this->elementStart('a',array('title'=>"Theme {$i}",'id'=>"Theme{$i}",'href'=>'#','class'=>'theme'));
-            $this->element('img',array('src'=>"http://static.leihou.com/v319001/images/themes/swatch-{$i}.gif",'alt'=>"Theme $i"));
+
+        foreach($designs as $key=>$theme){
+            $i = $theme['id'];
+            $picID = str_replace('bg-','',$theme['backgroundimage']);
+            $this->elementStart('a',array('title'=>"Theme {$i}",'id'=>"Theme-{$i}",'href'=>'#','class'=>'theme'));
+            $this->element('img',array('src'=>"http://static.leihou.com/v319001/images/themes/swatch-{$picID}",'alt'=>"Theme $i"));
             $this->elementEnd('a');
         }
 
@@ -46,16 +56,25 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
     {
         $selectedThemeID = $this->args['selected_theme_id'];
         $modefied = $this->args['modefied'] == 'true';
-        /*
-        if($selectedThemeID!='0' && !$modefied) {
-            $this->showForm(_('Design preferences saved.'), true);
-            return;
-        }
         
-        if($selectedThemeID!='0' && $modefied) {
+        $user   = common_current_user();        
+        $design = $user->getDesign();
+        
+        if($selectedThemeID!='0' && !$modefied) {
+        //删除先前的主题
+            if (!empty($design)&&$design->id!=$selectedThemeID){
+                $design->delete();
+            }
+            $original        = clone($user);
+            $user->design_id = $selectedThemeID;
+            $user->update($original);
             $this->showForm(_('Design preferences saved.'), true);
             return;
-        }*/
+        }elseif($selectedThemeID!='0' && $modefied) {
+            $modefiedDesign = Design::staticGet('id', $selectedThemeID);
+            //common_log(5,$modefiedDesign->backgroundcolor);
+            //return;
+        }
 
         try {
             $bgcolor = new WebColor($this->trimmed('design_background'));
@@ -86,9 +105,6 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $tile = true;
         }
 
-        $user   = common_current_user();
-        $design = $user->getDesign();
-
         if (!empty($design)) {
 
             $original = clone($design);
@@ -98,6 +114,9 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $design->sidebarcolor    = $sbcolor->intValue();
             $design->textcolor       = $tcolor->intValue();
             $design->linkcolor       = $lcolor->intValue();
+            if($selectedThemeID!='0' && $modefied){
+                $design->backgroundcolor = $modefiedDesign->backgroundcolor;
+            }
 
             $design->setDisposition($on, $off, $tile);
 
@@ -122,6 +141,9 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $design->sidebarcolor    = $sbcolor->intValue();
             $design->textcolor       = $tcolor->intValue();
             $design->linkcolor       = $lcolor->intValue();
+            if($selectedThemeID!='0' && $modefied){
+                $design->backgroundcolor = $modefiedDesign->backgroundcolor;
+            }
 
             $design->setDisposition($on, $off, $tile);
 
@@ -147,8 +169,10 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $user->query('COMMIT');
 
         }
-
-        $this->saveBackgroundImage($design);
+        
+        if($selectedThemeID=='0') {
+            $this->saveBackgroundImage($design);
+        }
 
         $this->showForm(_('Design preferences saved.'), true);
     }
