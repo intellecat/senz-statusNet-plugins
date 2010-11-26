@@ -1,6 +1,6 @@
 <?php
 /**
- * MyTest Plugin
+ * CommonStyle Plugin
  *
  * @category Plugin
  * @package  Statusnet
