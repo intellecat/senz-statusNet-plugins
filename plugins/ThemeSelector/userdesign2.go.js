@@ -123,6 +123,9 @@ $(document).ready(function() {
             $('#selected_theme_id').val(i);
             $('#modefied').val('false');
             
+            $('#design_background-image_on').attr('checked','checked');
+            $('#design_background-image_onoff img').attr('src',themes[i].swatch)
+                        
             if(themes[i].tiled)
                 $('#design_background-image_repeat').attr('checked','checked');
             else

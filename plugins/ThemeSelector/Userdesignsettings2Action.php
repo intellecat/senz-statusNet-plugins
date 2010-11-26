@@ -6,6 +6,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class UserDesignSettings2Action extends UserDesignSettingsAction
 {
+    private $optionalDesignIDs;
+    
     function prepare($args)
     {
         parent::prepare($args);
@@ -27,7 +29,8 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
     function showThemeSelections()
     {
         $design = new Design;
-        $design->limit(4,16);
+        $design->whereAdd('id > 4');
+        $design->whereAdd('id < 21');
         $design->find();
         $designs = array();
         while ($design->fetch()) {
@@ -60,9 +63,9 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
         $user   = common_current_user();        
         $design = $user->getDesign();
         
-        if($selectedThemeID!='0' && !$modefied) {
+        if($selectedThemeID && $selectedThemeID!='0' && !$modefied) {
         //删除先前的主题
-            if (!empty($design)&&$design->id!=$selectedThemeID){
+            if (!empty($design) && !$this->isOptional($design->id)){
                 $design->delete();
             }
             $original        = clone($user);
@@ -70,10 +73,8 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $user->update($original);
             $this->showForm(_('Design preferences saved.'), true);
             return;
-        }elseif($selectedThemeID!='0' && $modefied) {
+        }elseif($selectedThemeID && $selectedThemeID!='0' && $modefied) {
             $modefiedDesign = Design::staticGet('id', $selectedThemeID);
-            //common_log(5,$modefiedDesign->backgroundcolor);
-            //return;
         }
 
         try {
@@ -105,7 +106,7 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $tile = true;
         }
 
-        if (!empty($design)) {
+        if (!empty($design) && !$this->isOptional($design->id)) {
 
             $original = clone($design);
 
@@ -114,8 +115,9 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $design->sidebarcolor    = $sbcolor->intValue();
             $design->textcolor       = $tcolor->intValue();
             $design->linkcolor       = $lcolor->intValue();
-            if($selectedThemeID!='0' && $modefied){
-                $design->backgroundcolor = $modefiedDesign->backgroundcolor;
+            if($selectedThemeID && $selectedThemeID!='0' && $modefied){
+                $design->backgroundimage = $modefiedDesign->backgroundimage;
+                common_log(5,$modefiedDesign->backgroundimage);
             }
 
             $design->setDisposition($on, $off, $tile);
@@ -141,8 +143,9 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
             $design->sidebarcolor    = $sbcolor->intValue();
             $design->textcolor       = $tcolor->intValue();
             $design->linkcolor       = $lcolor->intValue();
-            if($selectedThemeID!='0' && $modefied){
-                $design->backgroundcolor = $modefiedDesign->backgroundcolor;
+
+            if($selectedThemeID && $selectedThemeID!='0' && $modefied){
+                $design->backgroundimage = $modefiedDesign->backgroundimage;
             }
 
             $design->setDisposition($on, $off, $tile);
@@ -177,6 +180,16 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
         $this->showForm(_('Design preferences saved.'), true);
     }
     
+    function isOptional($designID)
+    {
+        if(!$this->optionalDesignIDs){
+            $IDsString = common_config('design','optional');
+            $this->optionalDesignIDs = explode(',',$IDsString);
+            common_log(5,$this->optionalDesignIDs);
+        }
+        return in_array($designID,$this->optionalDesignIDs);
+    }
+    
     function showScripts()
     {
         AccountSettingsAction::showScripts();
@@ -199,7 +212,8 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
 //begin add
-        $this->hidden('selected_theme_id','0');
+        $selectedID = $this->isOptional($design->id) ? $design->id : '0';
+        $this->hidden('selected_theme_id',$selectedID);
         $this->hidden('modefied','false');
 //end add
         $this->elementStart('fieldset', array('id' =>
