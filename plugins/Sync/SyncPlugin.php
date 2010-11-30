@@ -17,7 +17,12 @@ if (!defined('STATUSNET')) {
 class SyncPlugin extends Plugin
 {
     function onEndNoticeSaveWeb($action,$notice){
-        $params = array('status'=>$notice->content,'source'=>'statusNet');
+        $this->toSina($notice);
+        $this->toDigu($notice);
+    }
+    
+    function toSina($notice){
+        $params = array('status'=>$notice->content,'source'=>'3268519186');
         $request = HTTPClient::start();
         $request->setConfig(array(
             'follow_redirects' => true,
@@ -27,9 +32,24 @@ class SyncPlugin extends Plugin
             'ssl_verify_host' => false
         ));
         $request->setAuth('chuck911@126.com', '123456');
-        $headers = array('Expect:');
-        $response = $request->post('http://api.t.sina.com.cn/update.xml', $headers, $params);
+        $headers = array();//array('Expect:');//http://api.t.sina.com.cn/statuses/update
+        $response = $request->post('http://api.t.sina.com.cn/statuses/update.xml', $headers, $params);
         $code = $response->getStatus();
-        echo 'code:'.$code;
+    }
+    
+    function toDigu($notice){
+        $params = array('content'=>$notice->content,'source'=>'statusNet');
+        $request = HTTPClient::start();
+        $request->setConfig(array(
+            'follow_redirects' => true,
+            'connect_timeout' => 120,
+            'timeout' => 120,
+            'ssl_verify_peer' => false,
+            'ssl_verify_host' => false
+        ));
+        $request->setAuth('chuck911@126.com', '123456');
+        $headers = array();//array('Expect:');//http://api.t.sina.com.cn/statuses/update
+        $response = $request->post('http://api.minicloud.com.cn/statuses/update.json',$headers, $params);
+        $code = $response->getStatus();
     }
 }
