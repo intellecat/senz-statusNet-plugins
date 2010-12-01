@@ -30,6 +30,11 @@ class CommonStylePlugin extends Plugin
 		$action->showLocalNavBlock();
 	}
 	
+	function onStartShowUAStyles($action)
+	{
+	    return false;
+	}
+	
 	function onEndShowDesign($action)
 	{
 	    return false;
