@@ -63,11 +63,12 @@ class CommonStylePlugin extends Plugin
 	}
 	
 	function onEndShowScripts($action){
-	    $action->inlineScript("
-		$(document).ready(function(){
-		    $('#aside_primary').height($('#core').height());   
-		});
-	    ");
+	//    $action->inlineScript("
+	//	$(document).ready(function(){
+	//	    $('#aside_primary').height($('#core').height());   
+	//	});
+	//    ");
+	    $action->script('local/plugins/CommonStyle/commonstyle.js');
 	}
 	
 	function onAutoload($cls)

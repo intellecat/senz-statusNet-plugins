@@ -319,7 +319,7 @@ text-decoration:none;
 #site_nav_local_views {
 width:223px;
 float:right;
-margin-right:0;
+margin-bottom:10px;
 margin-left:-1px;
 -moz-border-radius-topright:4px;
 border-radius-topright:4px;
@@ -817,14 +817,13 @@ margin-right:4px;
 }
 
 .aside .section {
-margin-bottom:18px;
-padding:0 10px;
+padding:5px 10px;
 clear:both;
 float:right;
 width:202px;
 }
 .aside .section h2 {
-font-size:110%;
+font-size:100%;
 text-transform:none;
 }
 
