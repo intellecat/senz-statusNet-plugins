@@ -51,7 +51,7 @@ font-family:sans-serif;
 font-size:1em;
 }
 input, textarea, select {
-border-width:2px;
+border-width:1px;
 border-style: solid;
 border-radius:4px;
 -moz-border-radius:4px;
@@ -1730,7 +1730,7 @@ input:focus, textarea:focus, select:focus,
 .form_notice.warning #notice_data-text,
 .form_notice.warning #notice_text-count,
 .form_settings .form_note {
-border-color:#9BB43E;
+border-color:#77D0EF;
 }
 input.submit {
 color:#FFFFFF;
@@ -2227,10 +2227,6 @@ background-color:rgba(120, 120, 120, 0.1);
     -moz-border-radius-topright:4px;
     border-radius-topright:4px;
     -webkit-border-top-right-radius:4px;
-}
-
-#notice_data-text {
-    border-color:#C0DEED;
 }
 
 #brief_stats_container {
