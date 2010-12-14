@@ -919,7 +919,6 @@ border-top-style:dotted;
 .notices li {
 list-style-type:none;
 line-height:1.1;
-min-height:47px;
 }
 .notices .notices {
 margin-top:7px;
