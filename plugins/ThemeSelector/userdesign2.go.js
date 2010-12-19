@@ -8,7 +8,7 @@ $(document).ready(function() {
                 $(E).val(rgb2hex($('#content').css('background-color')));
                 break;
             case 3:
-                $(E).val(rgb2hex($('#aside_primary').css('background-color')));
+                $(E).val(rgb2hex($('#core').css('background-color')));
                 break;
             case 4:
                 $(E).val(rgb2hex($('html body').css('color')));
@@ -40,7 +40,8 @@ $(document).ready(function() {
                 $('#content, #site_nav_local_views .current a').css({'background-color':C});
                 break;
             case 3:
-                $('#aside_primary').css({'background-color':C});
+                //$('#aside_primary').css({'background-color':C});
+                $('#core').css({'background-color':C});
                 break;
             case 4:
                 $('html body').css({'color':C});
@@ -57,8 +58,9 @@ $(document).ready(function() {
     }
 
     function UpdateSwatch(e) {
+        var lightness = f.RGBToHSL(f.unpack(e.value))[2];
         $(e).css({"background-color": e.value,
-                  "color": f.hsl[2] > 0.5 ? "#000": "#fff"});
+                  "color": lightness > 0.5 ? "#000": "#fff"});
     }
 
     function SynchColors(e) {
@@ -103,15 +105,26 @@ $(document).ready(function() {
                 .css('background-attachment','scroll')
                 .css('background-color',theme.background_color)
                 .css('color',theme.text_color);
-        $('#aside_primary').css('background-color',theme.sidebar_fill_color);
+        //$('#aside_primary').css('background-color',theme.sidebar_fill_color);
+        var borderColor = getBorderColor(theme.sidebar_fill_color);
+        $('#content,#site_nav_local_views li').css('border-color',borderColor);
+        
+        $('#core').css('background-color',theme.sidebar_fill_color);
         $('a').css('color',theme.link_color);
+    }
+    
+    function getBorderColor(sidebarColor){
+        var hsl = f.RGBToHSL(f.unpack(sidebarColor));
+        if(hsl[2]>0.5) hsl[2] -= 0.1;
+        else hsl[2] += 0.1;
+        return f.pack(f.HSLToRGB(hsl));
     }
     
     function themeSwitch(themes,i){
         $('#Theme-'+i).click(function(){
             previewTheme(themes[i]);
             
-            var swatches = $('#settings_design_color .swatch');
+            //var swatches = $('#settings_design_color .swatch');
             swatches.each(function (i, E){
                 InitColors(i, E);
                 UpdateSwatch(E);
@@ -170,12 +183,21 @@ $(document).ready(function() {
         ($(this)[0].checked) ? $('body').css({'background-repeat':'repeat'}) : $('body').css({'background-repeat':'no-repeat'});
     });
     
+    $('.title_design').click(function(){
+        $(this).addClass('active');
+        $(this).siblings('h3').removeClass('active');
+        if(this.id == 'title_design_background'){
+            $('#settings_design_background-image').show();
+            $('#settings_design_color').hide();
+        }else{
+            $('#settings_design_background-image').hide();
+            $('#settings_design_color').show();
+        }
+    });
+    
     var themes = twitterThemes();
-    //for(var i=1;i<=16;i++){
-    //    themeSwitch(themes,i);
-    //}
+
     for(themeID in themes){
-        //console.log(theme);
         themeSwitch(themes,themeID);
     }
 });

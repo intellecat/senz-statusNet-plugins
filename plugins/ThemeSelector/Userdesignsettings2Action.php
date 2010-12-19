@@ -195,15 +195,19 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
         AccountSettingsAction::showScripts();
 
         $this->script('farbtastic/farbtastic.js');
-        //$this->script('userdesign.go.js');
-
-        //$this->autofocus('design_background-image_file');
         $this->script('local/plugins/ThemeSelector/userdesign2.go.js');
     }
     
     function showDesignForm($design)
     {
-
+        $this->elementStart('h3',array('id' => 'title_design_background',
+                                       'class' => 'title_design' ));
+        $this->text(_('Change background image'));
+        $this->elementEnd('h3');
+        $this->elementStart('h3',array('id' => 'title_design_color',
+                                       'class' => 'title_design' ));
+        $this->text(_('Change colours'));
+        $this->elementEnd('h3');
         $this->elementStart('form', array('method' => 'post',
                                           'enctype' => 'multipart/form-data',
                                           'id' => 'form_settings_design',
@@ -305,18 +309,18 @@ class UserDesignSettings2Action extends UserDesignSettingsAction
                                           'value' => ''));
             $this->elementEnd('li');
 
-            $ccolor = new WebColor($design->contentcolor);
-
-            $this->elementStart('li');
-            $this->element('label', array('for' => 'swatch-2'), _('Content'));
-            $this->element('input', array('name' => 'design_content',
-                                          'type' => 'text',
-                                          'id' => 'swatch-2',
-                                          'class' => 'swatch',
-                                          'maxlength' => '7',
-                                          'size' => '7',
-                                          'value' => ''));
-            $this->elementEnd('li');
+            //$ccolor = new WebColor($design->contentcolor);
+            //
+            //$this->elementStart('li');
+            //$this->element('label', array('for' => 'swatch-2'), _('Content'));
+            //$this->element('input', array('name' => 'design_content',
+            //                              'type' => 'text',
+            //                              'id' => 'swatch-2',
+            //                              'class' => 'swatch',
+            //                              'maxlength' => '7',
+            //                              'size' => '7',
+            //                              'value' => ''));
+            //$this->elementEnd('li');
 
             $sbcolor = new WebColor($design->sidebarcolor);
 
