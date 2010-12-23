@@ -30,6 +30,7 @@ overflow:hidden;
 h1 {
 font-size:1.4em;
 margin-bottom:18px;
+clear:left;
 }
 #showstream h1 { display:none; }
 h2 { font-size:1.3em; }
@@ -420,7 +421,6 @@ border-radius:6px;
 
 #content {
 width:535px;
-min-height:322px;
 padding:20px;
 float:left;
 border-radius:6px;
@@ -456,9 +456,8 @@ border-radius-topright:6px;
 .form_notice {
 width:515px;
 line-height:1;
-position:absolute;
-top:200px;
-left:20px;
+margin-bottom:20px;
+float:left;
 z-index:9;
 }
 .form_notice fieldset {
@@ -1191,6 +1190,7 @@ padding:0;
 }
 #jOverlayContent h1 {
 max-width:425px;
+display:none;
 }
 #jOverlayContent #content {
 border-radius:7px;
@@ -1502,7 +1502,7 @@ width:auto;
 #bookmarklet #wrap {
 min-width:0;
 }
-
+/*
 #public.user_in #content,
 #groups.user_in #content,
 #publictagcloud.user_in #content,
@@ -1520,7 +1520,7 @@ min-width:0;
 #conversation.user_in #content,
 #attachment.user_in #content {
 padding-top:12.5em;
-}
+} */
 
 #profilesettings #form_notice,
 #avatarsettings #form_notice,
@@ -2217,11 +2217,7 @@ color:#333;
 
 /* 头部空间 */
 #header {
-	height:7em;
-}
-
-.form_notice {
-	top:150px;
+	height:3em;
 }
 
 .success {
@@ -2292,6 +2288,10 @@ h3.active {
 
 #settings_design_background-image,#settings_design_color {
     display:none;    
+}
+
+#jOverlayContent #form_notice {
+    display:none; 
 }
 
 /*end of @media screen, projection, tv*/

@@ -22,7 +22,8 @@ class CommonStylePlugin extends Plugin
 	//     {
 	//         //return false;
 	//     }
-
+	
+	//add local nav and briefStats in sidebar 
 	public function onStartShowSections($action)
 	{
 		if(property_exists($action,'user')){
@@ -30,6 +31,23 @@ class CommonStylePlugin extends Plugin
 		    $briefStats->show();
 		}		
 		$action->showLocalNavBlock();
+	}
+	
+	//remove local nav from original position
+	function onStartShowLocalNavBlock($action){
+	    
+	    return false;
+	}
+	
+	function onStartShowPageTitle($action){
+	    if (common_logged_in()) {
+		$action->showNoticeForm();
+	    }
+	    return true;
+	}
+	
+	function onStartShowNoticeForm($action){
+	    return false;
 	}
 	
 	function onStartShowUAStyles($action)
@@ -121,10 +139,6 @@ class CommonStylePlugin extends Plugin
 		    }
 		}
 	    }
-	}
-	
-	function onStartShowLocalNavBlock($action){
-	    return false;
 	}
 	
 	function onEndShowScripts($action){
