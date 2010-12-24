@@ -241,7 +241,6 @@ margin-right:-47px;
 
 #header {
 width:100%;
-height:10.5em;
 position:relative;
 float:left;
 padding-top:18px;
@@ -296,9 +295,7 @@ font-size:1.3em;
 font-weight:bold;
 }
 #anon_notice p {
-border-style:solid;
-border-width:1px;
-width:96%;
+
 padding:2%;
 }
 
@@ -961,6 +958,7 @@ text-decoration:underline;
 .notice .entry-title {
 float:left;
 width:100%;
+padding-bottom: 6px;
 overflow:hidden;
 }
 .notice .entry-title.ov {
@@ -1558,11 +1556,11 @@ padding-top:12.5em;
 display:none;
 }
 
-#public #core,
+/* #public #core,
 #showstream #core,
 #showgroup #core {
 margin-top:9em;
-}
+} */
 
 #public.user_in #core,
 #showstream.user_in #core {
@@ -1782,7 +1780,7 @@ border-top-color:#CEE1E9;
 }
 .notice,
 .profile {
-border-top-color:#DDFFCC;
+border-top-color:#EEEEEE;
 }
 .section .profile {
 border-top-color:#87B4C8;
@@ -2012,8 +2010,9 @@ box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
 -webkit-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
 }
 #content .notices li:hover {
-background-color:rgba(240, 240, 240, 0.2);
+background-color: #F7F7F7;
 }
+
 #conversation .notices li:hover {
 background-color:transparent;
 }
@@ -2025,9 +2024,7 @@ div.notice-options a,
 div.notice-options input {
 font-family:sans-serif;
 }
-#content .notices li:hover {
-background-color:rgba(240, 240, 240, 0.2);
-}
+
 #conversation .notices li:hover {
 background-color:transparent;
 }
@@ -2070,18 +2067,15 @@ background-position:10% 47%;
 
 #anon_notice {
 /* background:url(../images/illustrations/illu_unicorn-01.png) no-repeat 0 0; */
+border-radius:4px;
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
 }
-#showstream #anon_notice,
+
 #content .notice p.entry-content a:visited,
 content .notice p.entry-content .vcard a {
 background-color:transparent;
 }
-
-#anon_notice p {
-background-color:#FEFFDF;
-border-color:#FFFF00;
-}
-
 
 #form_notice .form_note {
 color:#CCC;
@@ -2216,10 +2210,6 @@ color:#333;
 }
 
 /* 头部空间 */
-#header {
-	height:3em;
-}
-
 .success {
     background-color:#C0DEED;
 }
