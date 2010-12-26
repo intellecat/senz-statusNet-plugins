@@ -125,12 +125,7 @@ class CommonStylePlugin extends Plugin
 		    $sbcolor = Design::toWebColor($design->sidebarcolor);
 		    if (!empty($sbcolor)) {
 			$css .= '#core { background-color: #'. $sbcolor->hexValue() . '; }' . "\n";
-			$colorConverter = new ColorConverter;
-			$hsl = $colorConverter->RGB2HSL($sbcolor->red,$sbcolor->green,$sbcolor->blue);
-			$hsl[2]>50 ? $hsl[2] -= 10 : $hsl[2] += 10;
-			if($hsl[2]>100)$hsl[2]=100;
-			else if($hsl[2]<0)$hsl[2]=0;
-			$hex=$colorConverter->HSL2HEX($hsl[0],$hsl[1],$hsl[2]);
+			$hex = $this->emphasizeColor($sbcolor);
 			$css .= '#content,#site_nav_local_views li,#site_nav_local_views li.current { border-color: '. $hex . '; }' . "\n";
 			$css .= '#site_nav_local_views a:hover { background-color: '. $hex . '; }' . "\n";
 		    }
@@ -139,6 +134,15 @@ class CommonStylePlugin extends Plugin
 		    }
 		}
 	    }
+	}
+	
+	function emphasizeColor($color){
+	    $colorConverter = new ColorConverter;
+	    $hsl = $colorConverter->RGB2HSL($color->red,$color->green,$color->blue);
+	    $hsl[2]>50 ? $hsl[2] -= 10 : $hsl[2] += 10;
+	    if($hsl[2]>100)$hsl[2]=100;
+	    else if($hsl[2]<0)$hsl[2]=0;
+	    return $colorConverter->HSL2HEX($hsl[0],$hsl[1],$hsl[2]);
 	}
 	
 	function onEndShowScripts($action){
