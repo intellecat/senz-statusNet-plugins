@@ -46,6 +46,11 @@ class CommonStylePlugin extends Plugin
 	    return true;
 	}
 	
+	//Òþ²ØÒ³½Åµ¼º½
+	function onStartSecondaryNav($action){
+	    return false;
+	}
+	
 	function onStartShowNoticeForm($action){
 	    return false;
 	}

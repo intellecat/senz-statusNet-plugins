@@ -803,7 +803,7 @@ margin-right:4px;
 .aside .section {
 padding:5px 10px;
 clear:both;
-float:right;
+float:left;
 width:202px;
 }
 .aside .section h2 {
