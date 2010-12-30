@@ -46,7 +46,12 @@ class CommonStylePlugin extends Plugin
 	    return true;
 	}
 	
-	//Òş²ØÒ³½Åµ¼º½
+	//add Index to main menu
+	function onStartPrimaryNav($action){
+	    $action->menuItem(common_local_url(''),'é¦–é¡µ');
+	}
+	
+	//éšè—é¡µè„šå¯¼èˆª
 	function onStartSecondaryNav($action){
 	    return false;
 	}

@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-27 23:43+0000\n"
-"PO-Revision-Date: 2010-12-29 00:02+0800\n"
+"PO-Revision-Date: 2010-12-29 22:26+0800\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -877,7 +877,7 @@ msgstr "来自<strong>%2$s</strong>的<strong>%1$s</strong>应用希望能够<st
 #, fuzzy
 msgctxt "LEGEND"
 msgid "Account"
-msgstr "帐号"
+msgstr "设置"
 
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
@@ -3296,7 +3296,7 @@ msgstr "你还没允许任何程序使用你的账户。"
 #: actions/oauthconnectionssettings.php:233
 #, php-format
 msgid "Are you a developer? [Register an OAuth client application](%s) to use with this instance of StatusNet."
-msgstr ""
+msgstr "你是一个开发者吗？[注册一个OAuth账号](%s) 来开发自己的应用程序吧 "
 
 #: actions/oembed.php:80
 #: actions/shownotice.php:100
@@ -3583,7 +3583,7 @@ msgstr "这个网站的主题。"
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:290
 msgid "Web path to themes."
-msgstr ""
+msgstr "存放主题的路径"
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:297
@@ -3677,7 +3677,7 @@ msgstr "这个网站的主题。"
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:381
 msgid "Web path to backgrounds."
-msgstr ""
+msgstr "存放背景图的路径"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #: actions/pathsadminpanel.php:390
@@ -4038,12 +4038,12 @@ msgstr "现在就 [注册](%%action.register%%) 并成为第一个发布消息�
 #: actions/public.php:242
 #, php-format
 msgid "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free Software [StatusNet](http://status.net/) tool. [Join now](%%action.register%%) to share notices about yourself with friends, family, and colleagues! ([Read more](%%doc.help%%))"
-msgstr "欢迎来到%%site.name%%，一个基于免费软件 [StatusNet](http://status.net/) 创建的 [微博客](http://zh.wikipedia.org/zh-hans/微博客) 服务。[现在加入](%%action.register%%) 并与你的朋友、家人和同事们一起分享你的消息。([查看更多](%%doc.help%%))"
+msgstr "欢迎来到[%%site.name%%]微博客。[现在加入](%%action.register%%) 并与你的朋友、家人和同事们一起分享你的消息。"
 
 #: actions/public.php:247
 #, php-format
 msgid "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free Software [StatusNet](http://status.net/) tool."
-msgstr "这里是%%site.name%%，一个基于自由软件[StatusNet](http://status.net/)的[微博客](http://zh.wikipedia.org/zh-hans/微博客) 。"
+msgstr "这里是%%site.name%%，一个[微博客](http://zh.wikipedia.org/zh-hans/微博客)。"
 
 #. TRANS: Title for public tag cloud.
 #: actions/publictagcloud.php:57
@@ -4720,12 +4720,12 @@ msgstr "建立"
 #: actions/showgroup.php:461
 #, php-format
 msgid "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free Software [StatusNet](http://status.net/) tool. Its members share short messages about their life and interests. [Join now](%%%%action.register%%%%) to become part of this group and many more! ([Read more](%%%%doc.help%%%%))"
-msgstr "**%s**是%%%%site.name%%%%上的一个用户小组，%%%%site.name%%%%是一个基于自由软件[StatusNet](http://status.net/)的[微博客](http://zh.wikipedia.org/zh-hans/微博客)服务。用户通过短消息分享他们的生活和兴趣。现在[加入](%%%%action.register%%%%)成为该小组的一员并享受更多的欢乐！（[阅读更多](%%%%doc.help%%%%)）"
+msgstr "**%s**是[%%%%site.name%%%%]微博客上的一个用户小组。用户通过短消息分享他们的生活和兴趣。现在[加入](%%%%action.register%%%%)成为该小组的一员并享受更多的欢乐！"
 
 #: actions/showgroup.php:467
 #, php-format
 msgid "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free Software [StatusNet](http://status.net/) tool. Its members share short messages about their life and interests. "
-msgstr "**%s** 是%%%%site.name%%%%上的一个小组，%%%%site.name%%%%是一个基于自由软件 [StatusNet](http://status.net/) 的[微博客](http://zh.wikipedia.org/zh-hans/微博客)。%%%%site.name%%%%的用户分享关于他们生活和各种兴趣的消息。"
+msgstr "**%s** 是[%%%%site.name%%%%]微博客上的一个小组。%%%%site.name%%%%的用户分享关于他们生活和各种兴趣的消息。"
 
 #: actions/showgroup.php:495
 msgid "Admins"
@@ -4805,12 +4805,12 @@ msgstr "你可以试着呼叫%1$s或给他们 [发一些消息](%%%%action.newno
 #: actions/showstream.php:243
 #, php-format
 msgid "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free Software [StatusNet](http://status.net/) tool. [Join now](%%%%action.register%%%%) to follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
-msgstr "**%s**在%%%%site.name%%%%有一个账号，%%%%site.name%%%%是一个基于自由软件[StatusNet](http://status.net/)的[微博客](http://zh.wikipedia.org/zh-hans/微博客)服务。[现在加入](%%%%action.register%%%%)并关注**%s**的消息和享受更多乐趣! （[阅读更多](%%%%doc.help%%%%)）"
+msgstr "**%s**在[%%%%site.name%%%%]微博客有一个账号。[现在加入](%%%%action.register%%%%)并关注**%s**的消息和享受更多乐趣! "
 
 #: actions/showstream.php:248
 #, php-format
 msgid "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free Software [StatusNet](http://status.net/) tool. "
-msgstr "**%s**在%%%%site.name%%%%有一个账号，%%%%site.name%%%%是一个基于自由软件[StatusNet](http://status.net/)的[微博客](http://zh.wikipedia.org/zh-hans/微博客)。"
+msgstr "**%s**在[%%%%site.name%%%%]微博客有一个账号。"
 
 #: actions/showstream.php:305
 #, php-format
@@ -7885,7 +7885,7 @@ msgstr "未知的"
 #: lib/profileaction.php:205
 #: lib/subgroupnav.php:82
 msgid "Subscriptions"
-msgstr "关注的"
+msgstr "关注"
 
 #: lib/profileaction.php:126
 msgid "All subscriptions"
@@ -7895,7 +7895,7 @@ msgstr "所有关注的"
 #: lib/profileaction.php:214
 #: lib/subgroupnav.php:90
 msgid "Subscribers"
-msgstr "关注者"
+msgstr "粉丝"
 
 #: lib/profileaction.php:161
 msgid "All subscribers"
@@ -8278,7 +8278,7 @@ msgstr "%s不是有效的颜色！应使用3或6个十六进制字符。"
 #: lib/xmppmanager.php:285
 #, php-format
 msgid "Unknown user. Go to %s to add your address to your account"
-msgstr ""
+msgstr "未知用户。请前往 %s 添加您的地址"
 
 #. TRANS: Response to XMPP source when it sent too long a message.
 #. TRANS: %1$d the maximum number of allowed characters (used for plural), %2$d is the sent number.
