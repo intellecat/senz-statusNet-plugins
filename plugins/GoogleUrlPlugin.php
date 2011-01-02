@@ -6,7 +6,9 @@ if (!defined('STATUSNET')) {
 require_once INSTALLDIR.'/plugins/SimpleUrl/SimpleUrlPlugin.php';
 
 class GoogleUrlPlugin extends SimpleUrlPlugin
-{    
+{
+    public $serviceUrl = 'http://goo.gl/api/url';
+    
     protected function shorten($url) {
         $googl = new goo_gl($url);
         return $googl->result();
