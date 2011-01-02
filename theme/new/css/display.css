@@ -419,6 +419,7 @@ border-radius:6px;
 #content {
 width:535px;
 padding:20px;
+min-height:400px;
 float:left;
 border-radius:6px;
 -moz-border-radius:6px;

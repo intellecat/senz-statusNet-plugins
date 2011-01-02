@@ -1,51 +1,17 @@
 <?php
-
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
-function showConfig()
-{
-    global $config;
-    return $config;
-}
+require_once INSTALLDIR.'/plugins/SimpleUrl/SimpleUrlPlugin.php';
 
-class TestAction extends Action
+class SimpleUrl2Plugin extends SimpleUrlPlugin
 {
-    function handle($args)
-    {
-        parent::handle($args);
-        $this->showPage();
-    }
+    public $serviceUrl = 'http://goo.gl/api/shorten';
     
-    function showContent()
-    {
-        //$this->raw(var_dump(showConfig()));
-        //$this->raw(common_config('design','optional'));
-        
-        //$this->user = User::staticGet('nickname', 'chuck911');
-        //if (!(common_config('site','closed') || common_config('site','inviteonly'))) {
-        //    $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
-        //                   'based on the Free Software [StatusNet](http://www.status.net/) tool. ' .
-        //                   '[Join now](%%%%action.register%%%%) to follow **%s**\'s notices and many more! ([Read more](%%%%doc.help%%%%))'),
-        //                 $this->user->nickname, $this->user->nickname);
-        //} else {
-        //    $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
-        //                   'based on the Free Software [StatusNet](http://www.status.net/) tool. '),
-        //                 $this->user->nickname, $this->user->nickname);
-        //}
-        //$this->raw(common_markup_to_html($m));
-        
-        //$data = array('url'=>'http://ioio.name/page/6?auth=0');
-        $googl = new goo_gl('http://ioio.name/page/6?auth=0');
-        echo $googl->result();
-        //return $result['short_url'];
-        
-    }
-    
-    function title()
-    {
-        return 'Test';
+    protected function shorten($url) {
+        $googl = new goo_gl($url);
+        return $googl->result();
     }
 }
 

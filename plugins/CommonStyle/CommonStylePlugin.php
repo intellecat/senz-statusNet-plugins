@@ -26,11 +26,12 @@ class CommonStylePlugin extends Plugin
 	//add local nav and briefStats in sidebar 
 	public function onStartShowSections($action)
 	{
-		if(property_exists($action,'user')){
-		    $briefStats = new BriefStats($action,$action->user);
-		    $briefStats->show();
-		}		
-		$action->showLocalNavBlock();
+	    //common_log(7,$action->trimmed('action'));
+	    if(property_exists($action,'user')){
+		$briefStats = new BriefStats($action,$action->user);
+		$briefStats->show();
+	    }		
+	    $action->showLocalNavBlock();
 	}
 	
 	//remove local nav from original position
@@ -40,8 +41,11 @@ class CommonStylePlugin extends Plugin
 	}
 	
 	function onStartShowPageTitle($action){
+	    $actionName = $action->trimmed('action');
 	    if (common_logged_in()) {
-		$action->showNoticeForm();
+		$cur = common_current_user();
+		if($actionName=='public' || $actionName=='showstream' && $cur->id == $action->profile->id)
+		    $action->showNoticeForm();
 	    }
 	    return true;
 	}
