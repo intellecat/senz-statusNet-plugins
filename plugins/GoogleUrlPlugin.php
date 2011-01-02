@@ -5,7 +5,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR.'/plugins/SimpleUrl/SimpleUrlPlugin.php';
 
-class SimpleUrl2Plugin extends SimpleUrlPlugin
+class GoogleUrlPlugin extends SimpleUrlPlugin
 {    
     protected function shorten($url) {
         $googl = new goo_gl($url);
