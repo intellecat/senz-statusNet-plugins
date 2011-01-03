@@ -44,7 +44,7 @@ class CommonStylePlugin extends Plugin
 	    $actionName = $action->trimmed('action');
 	    if (common_logged_in()) {
 		$cur = common_current_user();
-		if($actionName=='public' || $actionName=='showstream' && $cur->id == $action->profile->id)
+		if($actionName=='public' || $actionName=='all' && $cur->id == $action->profile->id)
 		    $action->showNoticeForm();
 	    }
 	    return true;
@@ -163,15 +163,24 @@ class CommonStylePlugin extends Plugin
 	    $action->script('local/plugins/CommonStyle/commonstyle.js');
 	}
 	
+	function onRouterInitialized($m)
+	{
+	    $m->connect('notice/form',
+			array('action' => 'NoticeForm'));
+    
+	    return true;
+	}
+	
 	function onAutoload($cls)
 	{
 	    $dir = dirname(__FILE__);
     
 	    switch ($cls)
 	    {
-		    case 'BriefStats':
+		case 'BriefStats':
+		case 'NoticeFormAction':
 		    include_once $dir . '/'.$cls.'.php';
-		return false;
+	    	return false;
 		    default:
 		    return true;
 	    }

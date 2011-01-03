@@ -2288,8 +2288,8 @@ h3.active {
     display:none;    
 }
 
-#jOverlayContent #form_notice {
-    display:none; 
+#jOverlayContent #content {
+    min-height:inherit;
 }
 
 #register .success {
